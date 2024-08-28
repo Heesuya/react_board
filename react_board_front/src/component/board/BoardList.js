@@ -26,6 +26,7 @@ const BoardList = () => {
   return (
     <div className="board-list-wrap">
       <h3>게시글 목록</h3>
+      <Link to="/write">글쓰기</Link>
       <div className="board-list">
         <table>
           <thead>

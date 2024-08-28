@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class BoardDTO {
 	private int boardNo;
 	private String boardTitle;
-	private String boatdContent;
+	private String boardContent;
 	private String boardWriter;
 	private String boardDate;
 }

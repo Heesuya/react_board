@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,9 +36,25 @@ public class BoardController {
 		return list;
 	}
 	
-	@GetMapping(value="/view")
-	public BoardDTO view(int boardNo) {
-		BoardDTO board = null;
+	@GetMapping(value="/view/{boardNo}")// ex) /board/view/9   바뀌는 부분 중괄호 @PathVariable 어노테이션 사용해서 경로에 있는 수 받아옴
+	public BoardDTO view(@PathVariable int boardNo) {//위 경로에 있는 변수 여기에 넣어줘~
+		BoardDTO board = boardService.selectOneBoard(boardNo);
+		System.out.println(board);
 		return board;
+	}
+	@PostMapping(value="/insert")
+	public int insert(@RequestBody BoardDTO board) {
+		int result = boardService.insertBoard(board);
+		return result;
+	}
+	@GetMapping(value="/delete/{boardNo}")
+	public int delete(@PathVariable int boardNo) {
+		int result = boardService.deleteBoard(boardNo);
+		return result;
+	}
+	@PostMapping(value="/modify")
+	public int modify(@RequestBody BoardDTO board) {
+		int result = boardService.updateBoard(board);
+		return result;
 	}
 }
